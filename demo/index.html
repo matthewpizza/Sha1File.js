@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>sha1 hash from file</title>
+  </head>
+  <body>
+    <form>
+      <input type="file">
+    </form>
+    <h1></h1>
+    <script type="text/javascript" src="../sjcl/sjcl.js"></script>
+    <script type="text/javascript" src="../src/index.js"></script>
+    <script type="text/javascript">
+      'use strict';
+
+      var input  = document.querySelector('input[type="file"]');
+      var result = document.querySelector('h1');
+
+      input.addEventListener('change', function () {
+        Sha1File(input.files[0], function (hash) {
+          result.innerText = hash;
+        });
+      }, false);
+    </script>
+  </body>
+</html>
