@@ -1,0 +1,15 @@
+#!/bin/bash
+
+pushd `dirname $0` > /dev/null
+  file_dir=`pwd`
+  project_root=`dirname "$file_dir"`
+popd > /dev/null
+
+# Install custom build of sjcl.js with sha1 support.
+# https://github.com/bitwiseshiftleft/sjcl/wiki/Getting-Started
+cd $project_root
+git clone https://github.com/bitwiseshiftleft/sjcl.git
+cd sjcl
+./configure --with-sha1 --with-codecBytes
+make sjcl.js
+make test
