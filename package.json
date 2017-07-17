@@ -1,5 +1,8 @@
 {
   "scripts": {
-    "install-sjcl": "./bin/install"
+    "postinstall": "./bin/install"
+  },
+  "dependencies": {
+    "sjcl": "^1.0.7"
   }
 }

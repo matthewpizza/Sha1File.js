@@ -7,9 +7,9 @@ popd > /dev/null
 
 # Install custom build of sjcl.js with sha1 support.
 # https://github.com/bitwiseshiftleft/sjcl/wiki/Getting-Started
-cd $project_root
-git clone https://github.com/bitwiseshiftleft/sjcl.git
-cd sjcl
+cd "$project_root/node_modules/sjcl"
 ./configure --with-sha1 --with-codecBytes
 make sjcl.js
-make test
+mkdir -p "$project_root/vendor"
+mv sjcl.js "$project_root/vendor/sjcl.js"
+exit 0
