@@ -39,7 +39,6 @@ function Sha1File(file, callback) {
    */
   function arrayBufferToBitArray(arrayBuffer) {
     // Convert ArrayBuffer to Uint8Array.
-    // TODO: Cross browser testing
     var bytes = new Uint8Array(arrayBuffer);
 
     // Convert from an array of bytes to a bitArray.
