@@ -9,17 +9,30 @@
       <input type="file">
     </form>
     <h1></h1>
+    <img>
     <script type="text/javascript" src="../vendor/sjcl.js"></script>
     <script type="text/javascript" src="../src/index.js"></script>
     <script type="text/javascript">
       'use strict';
 
-      var input  = document.querySelector('input[type="file"]');
-      var result = document.querySelector('h1');
+      var input   = document.querySelector('input[type="file"]');
+      var result  = document.querySelector('h1');
+      var preview = document.querySelector('img');
 
       input.addEventListener('change', function () {
-        Sha1File(input.files[0], function (hash) {
-          result.innerText = hash;
+        if (!input.files.length) {
+          return;
+        }
+
+        Sha1File(input.files[0]).then(function (hash) {
+          var reader = new FileReader();
+
+          reader.onload = function () {
+            result.innerText = hash;
+            preview.src = reader.result;
+          };
+
+          reader.readAsDataURL(input.files[0]);
         });
       }, false);
     </script>
